@@ -1,0 +1,51 @@
+
+
+
+<html lang="en" dir="ltr">
+
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+
+        {% load staticfiles %}
+        <link rel="stylesheet" href={% static 'accounts/style.css' %} type="text/css"
+        <title></title>
+
+    {% block head  %}
+    <meta charset="utf-8">
+    <title>base</title>
+    {% endblock %}
+
+  </head>
+      <body>
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">@bi Blogs</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                  </li>
+                  <a class="nav-link" href="/accounts/">Home <span class="sr-only">(current)</span></a>
+                    <li>
+                      <a class="nav-link" href="/accounts/register/">Register <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                  <a class="navbar-brand" href="/accounts/login">login</a>
+                </form>
+
+              </div>
+            </nav>
+
+    {% block body  %}
+
+
+    {% endblock %}
+  </body>
+</html>
