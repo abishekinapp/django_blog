@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
-from home.forms import HomeForm
+from home.forms import HomeForm ,CommentForm
 from django.shortcuts import render,redirect,get_object_or_404
-from home.models import Post
+from home.models import Post , Comment
 from django.utils import timezone
 
 
@@ -35,10 +35,33 @@ class HomeView(TemplateView):
 
 def post_detail(request, pk):
     posts = get_object_or_404(Post, pk=pk)
-    return render(request, 'home/post_details.html', {'posts': posts})
-
+    form = CommentForm()
+    comments = Comment.objects.filter(date__lte = timezone.now()).order_by('-date')
+    return render(request, 'home/post_details.html', {'posts': posts ,'comments':comments})
 
 def postlist(request):
     form =HomeForm()
     posts = Post.objects.filter(date__lte = timezone.now()).order_by('-date')
     return render(request, 'home/post_list.html', {'form':form , 'posts': posts })
+
+
+'''
+def Comment(request):
+    form = CommentForm()
+    comments=Comment.objects.filter(date__lte = timezone.now()).order_by('-date')
+
+'''
+
+def add_comment(request, pk):
+    posts = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            
+            comment.author = request.user
+            comment.save()
+            return redirect('post_detail', pk=pk)
+    else:
+        form = CommentForm()
+    return render(request, 'home/add_comment.html', {'form': form,'posts':posts,})

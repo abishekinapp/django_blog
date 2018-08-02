@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_home.html' %}
 
 
 
@@ -6,13 +6,18 @@
 
 {% block body %}
 
-<h1>  {{ posts.title }}  </h1>
+      <h1>  {{ posts.title }}  </h1>
 
-<p>{{ posts.post|linebreaksbr }}</p>
+      <p>{{ posts.post|linebreaksbr }}</p>
 
+      Posted by: {{ posts.user }}
 
+                  {% for comment in comments %}
 
-{{ posts.date }}
-Posted by: {{ posts.user }}
+                      <h3>author : {{ comment.author}}</h1>
+                      <h3>comments : {{ comment.comment}}</h3>
+
+                  {% endfor %}
+  <a class="btn btn-default" href="/home/add_comment/{{posts.pk}}">Comment</a>
 
 {% endblock %}
