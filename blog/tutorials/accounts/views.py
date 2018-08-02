@@ -7,14 +7,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from accounts.forms import EditProfile
 
-
-def home(request):
-    name='abishek'
-    numbers = [1,3,4,6,3,2,4,5,55]
-
-    args={'myname':name , 'number':numbers}
-    return render(request,'accounts/home.html',args)
-
+def firstpage(request):
+    return render(request,'accounts/firstpage.html')
 
 def register(request):
     if request.method == 'POST':

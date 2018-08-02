@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block body %}
+
+<h1>  {{ posts.title }}  </h1>
+
+<p>{{ posts.post|linebreaksbr }}</p>
+
+
+
+{{ posts.date }}
+Posted by: {{ posts.user }}
+
+{% endblock %}

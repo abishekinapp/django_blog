@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block head  %}
+
+<title>posts_list</title>
+
+{% endblock %}
+
+
+{% block body  %}
+
+<h1>HOME</h1>
+
+<form method="post">
+
+  {% csrf_token %}
+
+  {{form.as_p}}
+
+
+<a href="/home/postlist/" class="btn btn-info" role="button">Submit</a>
+    
+
+</form>
+
+
+{% endblock %}
